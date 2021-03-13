@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
@@ -14,6 +15,6 @@ const Button = styled.button.attrs({ type: 'button' })`
   padding: 5px 10px;
   cursor: pointer;
 
-  background: ${({ color }) => color === 'blue' && '#00f'};
+  background: ${({ theme, color }) => color === 'blue' && theme.colors.blue};
   background: ${({ color }) => color === 'red' && '#f00'};
 `;
