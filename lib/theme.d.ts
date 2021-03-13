@@ -1,6 +1,9 @@
 export declare const theme: {
     colors: {
-        blue: string;
-        red: string;
+        primary: string;
+        danger: string;
+        success: string;
+        warning: string;
+        disabled: string;
     };
 };
