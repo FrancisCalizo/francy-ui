@@ -6,4 +6,13 @@ export const theme = {
     warning: '#FCD34D',
     disabled: '#E5E7EB',
   },
+
+  setFocus: (color) => {
+    return `
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px ${color}
+      }
+    `;
+  },
 };
