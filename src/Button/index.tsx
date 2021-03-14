@@ -1,16 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { darken, lighten } from 'polished';
 
-export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
+export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
   color?: string;
+  variant?: 'filled' | 'outline';
 }
 
 export default function index(props: ButtonProps) {
   return <Button {...props}>{props.children}</Button>;
 }
 
-const Button = styled.button.attrs({ type: 'button' })`
+const Button = styled.button<ButtonProps>`
   display: inline-block;
   cursor: pointer;
   transition: background 0.1s ease-in-out;
@@ -31,5 +32,10 @@ const Button = styled.button.attrs({ type: 'button' })`
   }
 
   /* Variants */
-  background: ${({ color }) => color === 'red' && '#f00'};
+  ${({ variant }) =>
+    variant === 'outline' &&
+    css`
+      background: transparent;
+      color: ${({ theme }) => theme.colors.primary};
+    `}
 `;

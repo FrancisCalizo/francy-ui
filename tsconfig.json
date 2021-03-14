@@ -30,7 +30,7 @@
     "node_modules",
     "build",
     "scripts",
-    "lib/**/*",
+    "lib",
     "storybook-static",
     "src/**/_story.tsx"
   ]
