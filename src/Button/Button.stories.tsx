@@ -13,13 +13,21 @@ const Template: Story<ButtonProps> = (args) => (
 );
 export const Primary = Template.bind({});
 Primary.argTypes = {
-  color: {
-    description: 'Color of the `Button` component.',
+  colorScheme: {
+    description: 'Color scheme of the `Button` component.',
     table: {
       type: { summary: 'string' },
       defaultValue: { summary: 'primary' },
     },
-    control: 'text',
+    control: {
+      type: 'select',
+      options: {
+        primary: 'primary',
+        success: 'success',
+        danger: 'danger',
+        warning: 'warning',
+      },
+    },
   },
   variant: {
     description: 'The variant type of the `Button` component.',
@@ -27,6 +35,12 @@ Primary.argTypes = {
       type: { summary: 'string' },
       defaultValue: { summary: 'filled' },
     },
-    control: 'text',
+    control: {
+      type: 'select',
+      options: {
+        filled: 'filled',
+        outline: 'outline',
+      },
+    },
   },
 };
