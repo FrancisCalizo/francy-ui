@@ -5,6 +5,7 @@ import { darken, lighten, transparentize } from 'polished';
 export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
   colorScheme?: 'primary' | 'danger' | 'success' | 'warning';
   variant?: 'filled' | 'outline';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 export default function index(props: ButtonProps) {
@@ -37,7 +38,36 @@ const Button = styled.button<ButtonProps>`
   /* Variants */
   ${({ variant, colorScheme }) =>
     variant === 'outline' && getVariantOutlineColors(colorScheme)}
+
+  /* Sizes */
+  ${({ size }) => size && getSize(size)}
+
 `;
+
+const getSize = (size) => {
+  switch (size) {
+    case 'xs':
+      return css`
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+      `;
+    case 'sm':
+      return css`
+        font-size: 0.875rem;
+        padding: 0.35rem 0.75rem;
+      `;
+    case 'lg':
+      return css`
+        font-size: 1.125rem;
+        padding: 0.75rem 1.5rem;
+      `;
+    default:
+      return css`
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      `;
+  }
+};
 
 const getColorScheme = (colorScheme) => {
   return css`

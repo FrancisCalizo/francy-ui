@@ -43,4 +43,20 @@ Primary.argTypes = {
       },
     },
   },
+  size: {
+    description: 'The size of the `Button` component.',
+    table: {
+      type: { summary: 'string' },
+      defaultValue: { summary: 'md' },
+    },
+    control: {
+      type: 'select',
+      options: {
+        xs: 'xs',
+        sm: 'sm',
+        md: 'md',
+        lg: 'lg',
+      },
+    },
+  },
 };
