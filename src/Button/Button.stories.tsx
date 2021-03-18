@@ -40,6 +40,7 @@ Primary.argTypes = {
       options: {
         filled: 'filled',
         outline: 'outline',
+        ghost: 'ghost',
       },
     },
   },

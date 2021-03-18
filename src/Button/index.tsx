@@ -4,7 +4,7 @@ import { darken, lighten, transparentize } from 'polished';
 
 export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
   colorScheme?: 'primary' | 'danger' | 'success' | 'warning';
-  variant?: 'filled' | 'outline';
+  variant?: 'filled' | 'outline' | 'ghost';
   size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
@@ -37,7 +37,8 @@ const Button = styled.button<ButtonProps>`
 
   /* Variants */
   ${({ variant, colorScheme }) =>
-    variant === 'outline' && getVariantOutlineColors(colorScheme)}
+    (variant === 'outline' || variant === 'ghost') &&
+    getVariant(variant, colorScheme)}
 
   /* Sizes */
   ${({ size }) => size && getSize(size)}
@@ -82,13 +83,17 @@ const getColorScheme = (colorScheme) => {
   `;
 };
 
-const getVariantOutlineColors = (colorScheme) => {
+const getVariant = (variant, colorScheme) => {
   return css`
     background: transparent;
     color: ${({ theme }) =>
       colorScheme ? theme.colors[colorScheme] : theme.colors.primary};
     border-color: ${({ theme }) =>
-      colorScheme ? theme.colors[colorScheme] : theme.colors.primary};
+      variant === 'ghost'
+        ? 'transparent'
+        : colorScheme
+        ? theme.colors[colorScheme]
+        : theme.colors.primary};
 
     &:hover {
       background: ${({ theme }) =>
