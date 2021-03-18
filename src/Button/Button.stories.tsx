@@ -60,4 +60,19 @@ Primary.argTypes = {
       },
     },
   },
+  shape: {
+    description: 'The shape of the `Button` component.',
+    table: {
+      type: { summary: 'string' },
+      defaultValue: { summary: 'rounded' },
+    },
+    control: {
+      type: 'select',
+      options: {
+        square: 'square',
+        rounded: 'rounded',
+        capsule: 'capsule',
+      },
+    },
+  },
 };

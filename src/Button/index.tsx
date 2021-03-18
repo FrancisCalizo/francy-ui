@@ -6,6 +6,7 @@ export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
   colorScheme?: 'primary' | 'danger' | 'success' | 'warning';
   variant?: 'filled' | 'outline' | 'ghost';
   size?: 'xs' | 'sm' | 'md' | 'lg';
+  shape?: 'square' | 'rounded' | 'capsule';
 }
 
 export default function index(props: ButtonProps) {
@@ -42,33 +43,11 @@ const Button = styled.button<ButtonProps>`
 
   /* Sizes */
   ${({ size }) => size && getSize(size)}
+  /* Sizes */
+
+  ${({ shape }) => shape && getShape(shape)}
 
 `;
-
-const getSize = (size) => {
-  switch (size) {
-    case 'xs':
-      return css`
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-      `;
-    case 'sm':
-      return css`
-        font-size: 0.875rem;
-        padding: 0.35rem 0.75rem;
-      `;
-    case 'lg':
-      return css`
-        font-size: 1.125rem;
-        padding: 0.75rem 1.5rem;
-      `;
-    default:
-      return css`
-        font-size: 1rem;
-        padding: 0.5rem 1rem;
-      `;
-  }
-};
 
 const getColorScheme = (colorScheme) => {
   return css`
@@ -102,5 +81,37 @@ const getVariant = (variant, colorScheme) => {
           : transparentize(0.4, theme.colors.primary)};
       color: #fff;
     }
+  `;
+};
+
+const getSize = (size) => {
+  switch (size) {
+    case 'xs':
+      return css`
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+      `;
+    case 'sm':
+      return css`
+        font-size: 0.875rem;
+        padding: 0.35rem 0.75rem;
+      `;
+    case 'lg':
+      return css`
+        font-size: 1.125rem;
+        padding: 0.75rem 1.5rem;
+      `;
+    default:
+      return css`
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      `;
+  }
+};
+
+const getShape = (shape) => {
+  return css`
+    border-radius: ${() =>
+      shape === 'square' ? 0 : shape === 'capsule' ? '3.125rem' : '0.25rem'};
   `;
 };
